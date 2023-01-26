@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "declaration": true,
+        "declarationDir": "types",
+        "esModuleInterop": true,
+        "emitDeclarationOnly": true,
+        "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "lib": ["es5", "es2015", "es2016", "dom", "esnext"],
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noUnusedParameters": true,
+        "outDir": "dist",
+        "sourceMap": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "types": ["node"],
+        "target": "es6",
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx", "rollup.config.js"]
+}
