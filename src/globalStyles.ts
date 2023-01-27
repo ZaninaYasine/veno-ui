@@ -1,15 +1,30 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+@media (prefers-color-scheme: light) {
   :root{
-    font-size: 13px;
+    --bg: #ffffff;
 
-    --primary: #F5CC00;
-    --primary-contrast: #222222;
+    --primary: #ffbe0b;
+    --primary-contrast: #023047;
+    
+    --secondary: #f1f1f1;
+    --secondary-contrast: #2C2C2C;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root{
+    --bg: #141414;
+
+    --primary: #ffbe0b;
+    --primary-contrast: #023047;
     
     --secondary: #2C2C2C;
-    --secondary-contrast: #F1F1F1;
-
+    --secondary-contrast: #f1f1f1;
+  }
+}
+  :root{
     --border: 1px solid rgba(85, 85, 85, 0.17);
 
     --success: #27cf5f;
@@ -26,8 +41,12 @@ const GlobalStyle = createGlobalStyle`
   
 
   html, body {
-    background-color: #141414;
-    font-size: 1rem;
+    background-color: var(--bg);
+    font-size: 14px;
+    *{
+      line-height: 1rem;
+      font-family: 'General Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
   }
 
   * {

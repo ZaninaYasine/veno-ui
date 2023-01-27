@@ -1,4 +1,5 @@
 // Libraries Imports
+import { spawn } from "child_process";
 import React from "react";
 
 // Styled component import
@@ -9,8 +10,8 @@ import GlobalStyle from "../../globalStyles";
 export interface VnButtonProps {
     color?: "primary" | "secondary";
     size?: "default" | "small" | "large";
-    leftAdorment?: any;
-    rightAdorment?: any;
+    leftAdorment?: boolean;
+    rightAdorment?: boolean;
     status?: "danger" | "success" | "warning" | "undefined";
     radius?: "xs" | "s" | "m" | "l" | "xl" | "full";
     dropDown?: boolean;
@@ -32,9 +33,9 @@ const Button = (props: VnButtonProps & React.ButtonHTMLAttributes<HTMLButtonElem
         <>
             <GlobalStyle />
             <ButtonComponent {...props}>
-                {props.leftAdorment}
+                {props.leftAdorment && <i>X</i>}
                 <span>{props.children}</span>
-                {props.rightAdorment}
+                {props.rightAdorment && <i>X</i>}
             </ButtonComponent>
             {props.dropDown && (
                 <DropDown {...props}>
@@ -52,17 +53,18 @@ const Button = (props: VnButtonProps & React.ButtonHTMLAttributes<HTMLButtonElem
 
 const ButtonComponent = styled.button<VnButtonProps>`
     /* dimenssions */
-    width: ${(props) => (props.fullWidth ? (props.dropDown ? "calc(100% - 31px)" : "100%") : "fit-content")};
+    width: ${(props) => (props.fullWidth ? (props.dropDown ? "calc(100% - 32px)" : "100%") : "fit-content")};
     height: auto;
 
     /* display */
-    display: inline-grid;
-    grid-template-columns: ${(props) => (props.leftAdorment ? "24px" : "")} 1fr ${(props) =>
-            props.rightAdorment ? "24px" : ""};
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 
-    ${(props) => props.size === "default" && "padding: 6px"};
-    ${(props) => props.size === "small" && "padding: 4px"};
-    ${(props) => props.size === "large" && "padding: 10px"};
+    ${(props) => props.size === "small" && "padding: 4px 8px"};
+    ${(props) => props.size === "default" && "padding: 6px 8px"};
+    ${(props) => props.size === "large" && "padding: 10px 8px"};
 
     ${(props) => props.color === "primary" && "background-color: var(--primary)"};
     ${(props) => props.color === "secondary" && "background-color: var(--secondary)"};
@@ -79,7 +81,18 @@ const ButtonComponent = styled.button<VnButtonProps>`
         props.dropDown ? `0` : `var(${props.radius ? "--radius-" + props.radius : "--radius-s"})`};
 
     border: var(--border);
+    ${(props) => props.dropDown && "border-right: 0"};
     /* box-shadow: inset 0px 1px 1px rgba(7, 1, 1, 0.06), inset 0px -1px 1px rgba(0, 0, 0, 0.25); */
+
+    i {
+        width: 24px;
+        height: 24px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-style: normal;
+    }
     span {
         height: 24px;
 
@@ -96,9 +109,9 @@ const ButtonComponent = styled.button<VnButtonProps>`
         ${(props) => props.status === "warning" && "color: #ffffff"};
         ${(props) => props.status === "danger" && "color: #ffffff"};
 
-        ${(props) => props.size === "default" && "padding: 0 6px; font-size: 1rem; font-weight: 600"};
-        ${(props) => props.size === "small" && "padding: 0 4px; font-size: 0.825rem; font-weight: 400"};
-        ${(props) => props.size === "large" && "padding: 0 10px; font-size: 1.125rem; font-weight: 700"};
+        ${(props) => props.size === "small" && "padding: 0 4px; font-size: 0.825rem; font-weight: 600"};
+        ${(props) => props.size === "default" && "padding: 0 4px; font-size: 1rem; font-weight: 600"};
+        ${(props) => props.size === "large" && "padding: 0 4px; font-size: 1rem; font-weight: 700"};
     }
 `;
 
