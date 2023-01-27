@@ -1,3 +1,3 @@
-# Veno UI components
+# Aether UI components
 
 UI library

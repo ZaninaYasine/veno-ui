@@ -5,7 +5,7 @@ import Button from ".";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: "Veno-ui/Button",
+    title: "Aether-ui/Button",
     component: Button,
     argTypes: {
         color: {

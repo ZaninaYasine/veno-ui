@@ -1,5 +1,5 @@
 {
-    "name": "@zanina-yasine/veno-ui",
+    "name": "aether-ui",
     "version": "0.0.1",
     "description": "UI library",
     "main": "dist/cjs/index.js",
