@@ -1,22 +1,24 @@
-name: "🚀 Release"
+name : "🚀 Release"
 
 on:
-    release:
-        types: [published]
-
+  release:
+    types: [published]
+    
 jobs:
-    release:
-        name: 🚀 release
-        runs-on: ubuntu-latest
-        steps:
-            - name: 📚 checkout
-              uses: actions/checkout@v3.3.0
-            - name: 🟢 node
-              uses: actions/setup-node@v3.6.0
-              with:
-                  node-version: 16
-                  registry-url: https://registry.npmjs.org
-            - name: 🚀 publish
-              run: npm publish --access public
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+  release:
+    name: 🚀 Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Checkout
+        uses: actions/checkout@v3.3.0
+        with:
+          repository: ${{ github.repository }}
+      - name: 🟢 Node
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+      - name: 🚀 Publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
